@@ -62,7 +62,9 @@ import {mapActions} from 'vuex'
 export default {
 
   mounted(){
-    this.$store.dispatch('individualTeater')
+    this.$store.dispatch('individualTeater'),
+    this.$store.dispatch('fullDetail'),
+    this.$store.dispatch('getAbstractDbpedia')
     
         
   },

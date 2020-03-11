@@ -3,7 +3,7 @@
    
 
 <div class="main">
-    <div class="row" v-for="(i,index) in fullDetail" :key="index">
+    <div class="row" v-for="(i,index) in fullDetail.slice(fullDetails,1)" :key="index">
        <div class="col-11" v-if="i.labelIndividu">
           <h1 class="judul">{{$route.params.id}}</h1>
        </div>
@@ -148,7 +148,7 @@
            </div>
          </div> 
 
-         <div class="col-sm-9" >
+         <div class="col-sm-6" >
            <div class="gerakTari">
              <span v-if="individualGerakTari.length">
                 <router-link to="/detailGerakTari" v-for="(i,index) in individualGerakTari" :key="index">
@@ -163,6 +163,14 @@
 
            </div>
          </div> <!-- end of geraktari -->
+
+         <div class="col-sm-6">
+           <div class="LinkTo">
+             
+
+           </div>
+
+         </div>
        </div> <!-- end of row -->
     
     </div> <!-- end of modeDetail -->
@@ -181,7 +189,12 @@ export default {
   mounted(){
     this.$store.dispatch('dbpediaDaerah'),
     this.$store.dispatch('alatMusik'),
-    this.$store.dispatch('fullDetail', this.$route.params.id)
+    this.$store.dispatch('fullDetail', this.$route.params.id),
+    this.$store.dispatch('getImage', this.$route.params.id),
+    this.$store.dispatch('individualProperti', this.$route.params.id),
+     this.$store.dispatch('alatMusik', this.$route.params.id),
+     this.$store.dispatch('individualAksesoris', this.$route.params.id),
+    this.$store.dispatch('individualGerakTari', this.$route.params.id)
     
      
   },

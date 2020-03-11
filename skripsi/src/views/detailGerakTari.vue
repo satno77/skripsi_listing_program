@@ -55,7 +55,7 @@
             </router-link>
           </span>
         </div>
-    </div> <!-- end of individual for daerah -->
+    </div> <!-- end of individual for gerak tari -->
     
 </div> <!-- eo CLASS MAIN -->
 
@@ -70,6 +70,8 @@ import {mapActions} from 'vuex'
 export default {
 
   mounted(){
+    this.$store.dispatch('fullDetail'),
+    this.$store.dispatch('getAbstractDbpedia')
    
    
   },

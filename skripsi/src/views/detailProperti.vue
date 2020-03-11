@@ -44,7 +44,7 @@
           </span>
 
           <span v-else>
-                <router-link :to="{ name: 'detailsTari', params: { id: i.labelIndividu.value}}" v-if="i.label_class.value == 'TariRakyat' || i.label_class.value === 'TariKreasiBaru' || i.label_class.value === 'TariKlasik' ">
+            <router-link :to="{ name: 'detailsTari', params: { id: i.labelIndividu.value}}" v-if="i.label_class.value == 'TariRakyat' || i.label_class.value === 'TariKreasiBaru' || i.label_class.value === 'TariKlasik' ">
             <p style="text-align:center" v-if="i.labelIndividu" v-on:click="fullDetail(i.labelIndividu.value),getImage(i.labelIndividu.value),individualTokoh(i.labelIndividu.value),alatMusik(i.labelIndividu.value),
                                             individualCerita(i.labelIndividu.value),individualProperti(i.labelIndividu.value),
                                             individualAksesoris(i.labelIndividu.value),individualGerakTari(i.labelIndividu.value)">{{i.labelIndividu.value}}</p>
@@ -74,6 +74,8 @@ export default {
 
   mounted(){
    //this.$store.dispatch('moreInfoProperti')
+   this.$store.dispatch('fullDetail'),
+   this.$store.dispatch('getAbstractDbpedia')
    
   },
   computed:{

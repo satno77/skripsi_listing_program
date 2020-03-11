@@ -125,7 +125,7 @@ export default {
             .enter()
             .append("path")
             .attr("id", function(d) {
-            return d.source.index + "_" + d.target.index;
+              return d.source.index + "_" + d.target.index;
             }).attr("class", function(d) {
             return "link " + d.type;
             }).attr("marker-end", function(d) {
@@ -216,7 +216,7 @@ export default {
             }
 
             function transform(d) {
-            return "translate(" + d.x + "," + d.y + ")";
+              return "translate(" + d.x + "," + d.y + ")";
             }
 
             function onMouseover(d) {

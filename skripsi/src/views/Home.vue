@@ -19,18 +19,35 @@
     <div class="d-flex justify-content-between">
         <div class="card-body">
             <p class="card-text">
-              <span v-if="i.linkdata">
-              <router-link to="/details" >
-                    <p style="text-align:center;" v-on:click="fullDetail(i.labelClass.value),getAbstractDbpedia(i.linkdata.value)" >
-                         {{i.labelClass.value}} 
+              
+              <span v-if="i.label.value == 'TariRakyat' || i.label.value === 'TariKreasiBaru' || i.label.value === 'TariKlasik' ">
+              <router-link :to="{ name: 'detailsTari', params: { id: i.labelIndividu.value}}">
+                    <p  style="text-align:center;" v-if="i.linkdata" v-on:click="fullDetail(i.labelIndividu.value),getAbstractDbpedia(i.linkdata.value),getImage(i.labelIndividu.value),
+                    alatMusik(i.labelIndividu.value),individualProperti(i.labelIndividu.value),
+                    individualAksesoris(i.labelIndividu.value),individualGerakTari(i.labelIndividu.value)" >
+                         {{i.labelIndividu.value}} 
+                    </p>
+
+                    <p  style="text-align:center;" v-else v-on:click="fullDetail(i.labelIndividu.value),getImage(i.labelIndividu.value),
+                    alatMusik(i.labelIndividu.value),individualProperti(i.labelIndividu.value),
+                    individualAksesoris(i.labelIndividu.value),individualGerakTari(i.labelIndividu.value)" >
+                         {{i.labelIndividu.value}} 
                     </p>
               </router-link>
               </span>
 
               <span v-else>
-              <router-link to="/details" >
-                    <p style="text-align:center;" v-on:click="fullDetail(i.labelClass.value)">
-                         {{i.labelClass.value}} 
+              <router-link :to="{ name: 'details', params: { id: i.labelIndividu.value }}" >
+                    <p style="text-align:center;" v-if="i.linkdata" v-on:click="fullDetail(i.labelIndividu.value),getAbstractDbpedia(i.linkdata.value),getImage(i.labelIndividu.value),individualTokoh(i.labelIndividu.value),alatMusik(i.labelIndividu.value),
+                                            individualCerita(i.labelIndividu.value),individualProperti(i.labelIndividu.value),
+                                            individualAksesoris(i.labelIndividu.value),individualGerakTari(i.labelIndividu.value)">
+                         {{i.labelIndividu.value}} 
+                    </p>
+
+                    <p style="text-align:center;" v-else v-on:click="fullDetail(i.labelIndividu.value),getImage(i.labelIndividu.value),individualTokoh(i.labelIndividu.value),alatMusik(i.labelIndividu.value),
+                                            individualCerita(i.labelIndividu.value),individualProperti(i.labelIndividu.value),
+                                            individualAksesoris(i.labelIndividu.value),individualGerakTari(i.labelIndividu.value)">
+                         {{i.labelIndividu.value}} 
                     </p>
               </router-link>
               </span>
@@ -76,7 +93,14 @@ export default {
   methods:{
       ...mapActions([
           'getAbstractDbpedia',
-          'fullDetail'
+          'fullDetail',
+          'getImage',
+          'individualTokoh',
+          `alatMusik`,
+          `individualCerita`,
+          'individualProperti',
+          'individualAksesoris',
+          'individualGerakTari'
          
       ]),
       getIconPath(iconName){

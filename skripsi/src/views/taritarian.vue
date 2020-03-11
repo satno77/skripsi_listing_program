@@ -8,11 +8,15 @@
 <hr>
 <hr>
 
-    <div class="dropdown text-center sticky">
-          <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown text-center ">
+          <button class="btn btn-block btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Pilih Kategori --
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuButton">
+            <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#DramatariTopeng'">Dramatari Bertopeng</button>
+            <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#DramatariTanpaTopeng'">Dramatari Tanpa Topeng</button>
+            <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#DramatariOpera'">Dramatari Opera</button>
+            <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#Sendratari'">Sendratari</button>
             
           </div>
       </div>
@@ -50,8 +54,9 @@
                          {{i.labelIndividu.value}} 
                     </button>
               </router-link>
+              <router-view></router-view>
               </span>
-              <router-view/>
+              
            </p>
         </div>
     </div>
@@ -163,7 +168,9 @@ export default {
   mounted(){
     this.$store.dispatch('individualTariKlasik'),
     this.$store.dispatch('individualTariRakyat'),
-    this.$store.dispatch('individualTariKreasiBaru')
+    this.$store.dispatch('individualTariKreasiBaru'),
+    this.$store.dispatch('fullDetail'),
+    this.$store.dispatch('getAbstractDbpedia')
      
   },
   computed:{

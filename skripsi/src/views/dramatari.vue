@@ -11,14 +11,14 @@
 
  
   <div class="dropdown text-center">
-  <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-outline-dark btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Pilih Kategori --
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <button class="dropdown-item" href="#" style="text-align:center;" v-scroll-to="'#DramatariTopeng'">Dramatari Bertopeng</button>
-    <button class="dropdown-item" href="#" style="text-align:center;" v-scroll-to="'#DramatariTanpaTopeng'">Dramatari Tanpa Topeng</button>
-    <button class="dropdown-item" href="#" style="text-align:center;" v-scroll-to="'#DramatariOpera'">Dramatari Opera</button>
-    <button class="dropdown-item" href="#" style="text-align:center;" v-scroll-to="'#Sendratari'">Sendratari</button>
+  <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuButton">
+    <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#DramatariTopeng'">Dramatari Bertopeng</button>
+    <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#DramatariTanpaTopeng'">Dramatari Tanpa Topeng</button>
+    <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#DramatariOpera'">Dramatari Opera</button>
+    <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#Sendratari'">Sendratari</button>
   </div>
   </div>
   
@@ -227,7 +227,9 @@ export default {
     this.$store.dispatch('individualDramatariBertopeng'),
     this.$store.dispatch('individualDramatariOpera'),
     this.$store.dispatch('individualDramatariTanpaTopeng'),
-     this.$store.dispatch('individualSendratari')
+    this.$store.dispatch('individualSendratari'),
+    this.$store.dispatch('fullDetail'),
+    this.$store.dispatch('getAbstractDbpedia')
    
         
   },

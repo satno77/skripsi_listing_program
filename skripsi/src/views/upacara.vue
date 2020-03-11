@@ -9,53 +9,23 @@
      <hr>
 
     
-<br>
 
+  <div class="dropdown text-center">
+  <button class="btn btn-block btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Pilih Kategori --
+  </button>
+  <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuButton" style="text-align: center;">
+  <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#Pengukuhan'">Pengukuhan</button>
+  <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#Pernikahan'">Pernikahan</button>
+  <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#UpacaraTradisi'">UpacaraTradisi</button>
+    
+  </div>
+  </div>
 
-     <div class="row" id="Uncategorized">
-      <div class="col-sm-2" v-for="(i,index) in individualUpacara" :key="index" >
-          <span v-if="i.image">
-              <img class="img-thumbnail" style="display:block; width: 200px; height:200px; margin-left:auto;  margin-right:auto;" v-bind:src="getIconPath(i.image.value)"  alt="...">
-          </span>
-          <span v-else>
-              <img class="img-thumbnail" style="display:block; width: 2000px; height:200px; margin-left:auto;  margin-right:auto;" src="http://placehold.it/250x300"  alt="...">
-          </span>
-    <div class="d-flex justify-content-between">
-        <div class="card-body">
-            <p class="card-text">
-              <span v-if="i.dboDbpedia">
-               
-                   <router-link :to="{ name: 'detailUpacara', params: { id: i.labelIndividu.value }}" >
-                     <button class="btn btn-info btn-block" v-on:click="fullDetailUpacara(i.labelIndividu.value),getAbstractDbpedia(i.dboDbpedia.value)
-                                            ,getImage(i.labelIndividu.value),individualTokoh(i.labelIndividu.value),alatMusik(i.labelIndividu.value),
-                                            individualCerita(i.labelIndividu.value),individualProperti(i.labelIndividu.value),
-                                            individualAksesoris(i.labelIndividu.value),individualGerakTari(i.labelIndividu.value)">
-                         {{i.labelIndividu.value}} 
-                     </button>
-                     </router-link>
-              </span>
-
-              <span v-else>
-             <router-link :to="{ name: 'detailUpacara', params: { id: i.labelIndividu.value }}" >
-                    <button class="btn btn-info btn-block" v-on:click="fullDetailUpacara(i.labelIndividu.value)
-                          ,getImage(i.labelIndividu.value),individualTokoh(i.labelIndividu.value),alatMusik(i.labelIndividu.value),
-                          individualCerita(i.labelIndividu.value),individualProperti(i.labelIndividu.value),
-                          individualAksesoris(i.labelIndividu.value),individualGerakTari(i.labelIndividu.value)">
-                         {{i.labelIndividu.value}} 
-                    </button>
-              </router-link>
-              <router-view></router-view>
-              </span>
-              
-           </p>
-        </div>
-    </div>
-    </div>
-    </div>
     <hr>
   
       
-    <h2 style="text-align: center;">PENGUKUHAN</h2>
+    <h2 style="text-align: center;">Pengukuhan</h2>
      <hr>
      <div class="row" id="Pengukuhan">
       <div class="col-sm-2" v-for="(i,index) in individualPengukuhan" :key="index" >
@@ -101,7 +71,7 @@
     <hr>
 
 
-    <h2 style="text-align: center;">PERNIKAHAN</h2>
+    <h2 style="text-align: center;">Pernikahan</h2>
      <hr>
      <div class="row" id="Pernikahan">
       <div class="col-sm-2" v-for="(i,index) in individualPernikahan" :key="index" >
@@ -145,6 +115,50 @@
     </div>
     <br>  
 
+     <h2 style="text-align: center;">Upacara Tradisi</h2>
+     <hr>
+     <div class="row" id="UpacaraTradisi">
+      <div class="col-sm-2" v-for="(i,index) in individualTradisi" :key="index" >
+          <span v-if="i.image">
+              <img class="img-thumbnail" style="display:block; width: 200px; height:200px; margin-left:auto;  margin-right:auto;" v-bind:src="getIconPath(i.image.value)"  alt="...">
+          </span>
+          <span v-else>
+              <img class="img-thumbnail" style="display:block; width: 2000px; height:200px; margin-left:auto;  margin-right:auto;" src="http://placehold.it/250x300"  alt="...">
+          </span>
+    <div class="d-flex justify-content-between">
+        <div class="card-body">
+            <p class="card-text">
+              <span v-if="i.dboDbpedia">
+               
+                   <router-link :to="{ name: 'detailUpacara', params: { id: i.labelIndividu.value }}" >
+                     <button class="btn btn-info btn-block" v-on:click="fullDetailUpacara(i.labelIndividu.value),getAbstractDbpedia(i.dboDbpedia.value)
+                                            ,getImage(i.labelIndividu.value),individualTokoh(i.labelIndividu.value),alatMusik(i.labelIndividu.value),
+                                            individualCerita(i.labelIndividu.value),individualProperti(i.labelIndividu.value),
+                                            individualAksesoris(i.labelIndividu.value),individualGerakTari(i.labelIndividu.value)">
+                         {{i.labelIndividu.value}} 
+                     </button>
+                     </router-link>
+              </span>
+
+              <span v-else>
+             <router-link :to="{ name: 'detailUpacara', params: { id: i.labelIndividu.value }}" >
+                    <button class="btn btn-info btn-block" v-on:click="fullDetailUpacara(i.labelIndividu.value)
+                          ,getImage(i.labelIndividu.value),individualTokoh(i.labelIndividu.value),alatMusik(i.labelIndividu.value),
+                          individualCerita(i.labelIndividu.value),individualProperti(i.labelIndividu.value),
+                          individualAksesoris(i.labelIndividu.value),individualGerakTari(i.labelIndividu.value)">
+                         {{i.labelIndividu.value}} 
+                    </button>
+              </router-link>
+              <router-view></router-view>
+              </span>
+              
+           </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    <br> 
+
   </div> <!-- end of class main -->
 
 </div>
@@ -160,14 +174,18 @@ export default {
   mounted(){
     this.$store.dispatch('individualUpacara'),
     this.$store.dispatch('individualPengukuhan'),
-    this.$store.dispatch('individualPernikahan')
+    this.$store.dispatch('individualPernikahan'),
+    this.$store.dispatch('individualTradisi'),
+    this.$store.dispatch('fullDetail'),
+    this.$store.dispatch('getAbstractDbpedia')
     
   },
   computed:{
       ...mapState([
         'individualUpacara',
         'individualPengukuhan',
-        'individualPernikahan'
+        'individualPernikahan',
+        'individualTradisi'
           //`contohKematian`
           
       ])
@@ -238,6 +256,7 @@ body {
 	margin: 0;
 	height: 100%;
 }
+
 
 
 

@@ -9,14 +9,14 @@
     <hr>
     <hr>
 
-    <div class="dropdown text-center sticky">
-          <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown text-center">
+          <button class="btn btn-block btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Pilih Kategori --
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <button class="dropdown-item" href="#" style="text-align:center;" v-scroll-to="'#WayangKulit'">Wayang Kulit</button>
-            <button class="dropdown-item" href="#" style="text-align:center;" v-scroll-to="'#WayangKayu'">Wayang Kayu</button>
-            <button class="dropdown-item" href="#" style="text-align:center;" v-scroll-to="'#WayangOrang'">Wayang Orang</button>
+          <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuButton">
+            <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#WayangKulit'">Wayang Kulit</button>
+            <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#WayangKayu'">Wayang Kayu</button>
+            <button class="dropdown-item btn-block" href="#" style="text-align:center;" v-scroll-to="'#WayangOrang'">Wayang Orang</button>
           </div>
       </div>
 
@@ -187,7 +187,7 @@ export default {
     this.$store.dispatch('individualWayangKulit'),
     this.$store.dispatch('individualWayangKayu'),
     this.$store.dispatch('individualWayangOrang'),
-    this.$store.dispatch('fullDetail'),
+    this.$store.dispatch('fullDetail')
     this.$store.dispatch('getAbstractDbpedia')    
   },
   computed:{

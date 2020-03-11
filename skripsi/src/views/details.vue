@@ -3,9 +3,9 @@
    
 
 <div class="main">
-    <div class="row" v-for="(i,index) in fullDetail" :key="index">
+    <div class="row" v-for="(i,index) in fullDetail.slice(fullDetails,1)" :key="index">
        <div class="col-11" v-if="i.labelIndividu">
-          <h1 class="judul">{{$route.params.id}}</h1>
+          <h1 class="judul">{{i.labelIndividu.value}}</h1>
        </div>
     </div>
 
@@ -238,8 +238,15 @@ export default {
   mounted(){
     this.$store.dispatch('dbpediaDaerah'),
     //this.$store.dispatch('alatMusik'),
-    this.$store.dispatch('fullDetail', this.$route.params.id)
-    
+    this.$store.dispatch('fullDetail', this.$route.params.id),
+    this.$store.dispatch('individualCerita', this.$route.params.id),
+    //this.$store.dispatch('getAbstractDbpedia', this.$route.params.id)
+    this.$store.dispatch('getImage', this.$route.params.id),
+    this.$store.dispatch('individualTokoh', this.$route.params.id),
+    this.$store.dispatch('alatMusik', this.$route.params.id),
+    this.$store.dispatch('individualProperti', this.$route.params.id),
+    this.$store.dispatch('individualAksesoris', this.$route.params.id),
+    this.$store.dispatch('individualGerakTari', this.$route.params.id)
      
   },
   computed:{

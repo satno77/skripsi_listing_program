@@ -6,8 +6,9 @@ import VuexPersistance from 'vuex-persist'
 Vue.use(Vuex, axios)
 
 //var urlsparql = "http://ejxpro.com:8090/fuseki/seni_pertunjukan/query"
+var urlsparql = "https://app.alunalun.info/fuseki/seni_pertunjukan"
 //var urlsparql = "http://156.67.217.237/repositories/seni-pertunjukan-indonesia"
-var urlsparql = "http://localhost:3030/seni"
+//var urlsparql = "http://localhost:3030/seni"
 var dbpedia = "https://cors-anywhere.herokuapp.com/http://id.dbpedia.org/sparql"
 
 export default new Vuex.Store({
@@ -61,6 +62,7 @@ export default new Vuex.Store({
     individualUpacara:[],
     individualPengukuhan:[],
     individualPernikahan:[],
+    individualTradisi:[],
     get_individuals: [],
     
   },
@@ -209,6 +211,9 @@ export default new Vuex.Store({
     },
     GET_INDIVIDUALS(state, hasil) {
       state.get_individuals = hasil
+    },
+    IndividualTradisi(state, hasil){
+      state.individualTradisi = hasil
     }
   },
   actions: {
@@ -1221,12 +1226,14 @@ export default new Vuex.Store({
           PREFIX schema:<http://schema.org/>
           PREFIX dbo:<http://dbpedia.org/ontology/>
           PREFIX : <http://alunalun.info/ontology/senipertunjukan#>                      
-          select distinct ?idClass ?labelClass ?linkdata ?image
+          select distinct ?id ?idClass ?labelIndividu ?label ?linkdata ?image 
           WHERE{ 
-          	?idClass a/rdfs:subClassOf* :SeniPertunjukan.	
-  			  ?idClass rdfs:label ?labelClass.
-          ?idClass dbo:linkdata ?linkdata.
-          OPTIONAL{?idClass schema:image ?image}
+  			      ?id rdfs:subClassOf* :SeniPertunjukan.
+  			      ?id rdfs:label ?label.
+              ?idClass a ?id.
+ 		          ?idClass rdfs:label ?labelIndividu.
+  			      ?idClass dbo:linkdata ?linkdata.
+  			      OPTIONAL{?idClass schema:image ?image}
           }
 		      ORDER BY RAND() LIMIT 6
             `
@@ -1356,13 +1363,13 @@ export default new Vuex.Store({
           PREFIX schema:<http://schema.org/>
           PREFIX dbo:<http://dbpedia.org/ontology/>
           PREFIX : <http://alunalun.info/ontology/senipertunjukan#>                      
-          select distinct ?subject ?label ?label_class ?dbolinkdata
+          select distinct ?subject ?labelIndividu ?label_class ?dbolinkdata
           WHERE{ 
- 		       ?individual rdfs:subClassOf* :SeniPertunjukan.
-  		     ?individual rdfs:label ?label_class.
-           ?subject a ?individual.
- 		       ?subject rdfs:label ?label.
-  		     filter (regex(?label,"${id}","i"))
+ 		           ?individual rdfs:subClassOf* :SeniPertunjukan.
+  		         ?individual rdfs:label ?label_class.
+               ?subject a ?individual.
+ 		           ?subject rdfs:label ?labelIndividu.
+  		     filter (regex(?labelIndividu,"${id}","i"))
   		     OPTIONAL{?subject dbo:linkdata ?dbolinkdata.}
           }
             `
@@ -1565,7 +1572,7 @@ export default new Vuex.Store({
           
           select ?idClass ?labelIndividu ?image ?dboDbpedia
           where{
-            ?idClass a :Pernikahan.
+            ?idClass a/rdfs:subClassOf :Pernikahan.
             ?idClass rdfs:label ?labelIndividu.
             OPTIONAL{?idClass schema:image ?image}
             OPTIONAL{?idClass dbo:linkdata ?dboDbpedia}
@@ -1577,6 +1584,32 @@ export default new Vuex.Store({
           const result = response.data.results.bindings
           let hasil = result
           commit('IndividualPernikahan', hasil)
+      })
+    },
+    individualTradisi({ commit }){
+      axios.get(urlsparql, {
+        params: {
+          query: `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+          PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+          PREFIX owl: <http://www.w3.org/2002/07/owl#>
+          PREFIX schema:<http://schema.org/>
+          PREFIX dbo:<http://dbpedia.org/ontology/>
+          PREFIX : <http://alunalun.info/ontology/senipertunjukan#>
+          
+          select ?idClass ?labelIndividu ?image ?dboDbpedia
+          where{
+            ?idClass a :UpacaraTradisi.
+            ?idClass rdfs:label ?labelIndividu.
+            OPTIONAL{?idClass schema:image ?image}
+            OPTIONAL{?idClass dbo:linkdata ?dboDbpedia}
+            
+          }
+            `
+        }
+      }).then((response) => {
+          const result = response.data.results.bindings
+          let hasil = result
+          commit('IndividualTradisi', hasil)
       })
     },
     getIndividuals({ commit }, id) {

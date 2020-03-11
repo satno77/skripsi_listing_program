@@ -13,12 +13,7 @@
     </div>
 
     <div class="row" >
-      <div class="col-sm-9"> <!-- start wrapper for deskripsi -->
-      <!--<div class="col-sm-auto" v-if="cekDbpedia()== true">
-        <div v-for="(i,index) in getAbstractDbpedia" :key="index">
-           <span><p class="deskripsi" style="text-align:justify;" v-if="i.abstract">{{i.abstract.value}}</p></span>
-        </div>
-      </div> -->
+      <div class="col-sm-9">
 
       <div class="col-sm-auto">
         <span v-for="(i,index) in fullDetailUpacara" :key="index">
@@ -74,7 +69,7 @@
     <hr>
     
     <div class="row">
-      <div class="col-sm-7" v-for="(i,index) in fullDetailUpacara" :key="index">
+      <div class="col-sm-12" v-for="(i,index) in fullDetailUpacara" :key="index">
            <div>
              <p v-if="i.prosesiUpacara" v-html="i.prosesiUpacara.value"></p>
            </div>
